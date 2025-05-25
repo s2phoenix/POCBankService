@@ -2,6 +2,8 @@ package com.example.POCBankService.controller;
 
 import com.example.POCBankService.model.AccountBalance;
 import com.example.POCBankService.model.TransferRequest;
+import com.example.POCBankService.model.request.SubmitTransaction;
+import com.example.POCBankService.model.response.SubmitTransactionResponse;
 import com.example.POCBankService.model.response.TransactionStatementResponse;
 import com.example.POCBankService.service.TransactionService;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RestController
@@ -49,5 +52,16 @@ public class TransactionController {
                 request.getAmount()
         );
         return ResponseEntity.ok("Transfer successful");
+    }
+
+    @PostMapping("/submit")
+    public SubmitTransactionResponse submitTransaction(@RequestBody SubmitTransaction request) {
+        String status = transactionService.submitTransaction(request);
+
+        String formattedDate = request.getTimestamp()
+                .toLocalDate()
+                .format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+
+        return new SubmitTransactionResponse(status, formattedDate);
     }
 }

@@ -14,7 +14,6 @@ public class WorkflowRegistry {
 
     @PostConstruct
     public void init() {
-        // Static example (could be loaded from YAML, DB, etc.)
         workflowMap.put("defaultWorkflow", List.of("stepA", "stepB"));
         workflowMap.put("customWorkflow", List.of("stepB"));
         workflowMap.put("registerProductC", List.of("stepC"));

@@ -1,18 +1,24 @@
 package com.example.POCBankService.service;
 
+import com.example.POCBankService.entity.TransactionHolding;
 import com.example.POCBankService.entity.TransactionInfo;
 import com.example.POCBankService.entity.UserInfo;
 import com.example.POCBankService.model.AccountBalance;
 import com.example.POCBankService.model.TransactionItem;
+import com.example.POCBankService.model.contants.GlobalConstant;
+import com.example.POCBankService.model.request.SubmitTransaction;
 import com.example.POCBankService.model.response.TransactionStatementResponse;
+import com.example.POCBankService.repository.TransactionHoldingRepository;
 import com.example.POCBankService.repository.TransactionInfoRepository;
 import com.example.POCBankService.repository.UserInfoRepository;
+import jakarta.transaction.Transaction;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
@@ -26,6 +32,7 @@ public class TransactionService {
 
     private final UserInfoRepository userInfoRepository;
     private final TransactionInfoRepository transactionInfoRepository;
+    private final TransactionHoldingRepository transactionHoldingRepository;
 
     public List<TransactionStatementResponse> getCustomerStatement(String userId) {
         List<UserInfo> users = userInfoRepository.findByUserId(userId); // citizen ID
@@ -142,5 +149,22 @@ public class TransactionService {
 
         transactionInfoRepository.save(debitTransaction);
         transactionInfoRepository.save(creditTransaction);
+    }
+
+    @Transactional
+    public String submitTransaction(SubmitTransaction request) {
+        try {
+            TransactionHolding entity = new TransactionHolding();
+            entity.setTransactionId(request.getTransactionId());
+            entity.setAmount(request.getAmount());
+            entity.setCurrency(request.getCurrency());
+            entity.setPayee(request.getPayee());
+            entity.setTimestamp(request.getTimestamp() != null ? request.getTimestamp() : ZonedDateTime.now());
+            entity.setStatus("PENDING");
+            transactionHoldingRepository.save(entity);
+            return GlobalConstant.SUCCESS;
+        } catch (Exception e) {
+            return GlobalConstant.FAILED;
+        }
     }
 }

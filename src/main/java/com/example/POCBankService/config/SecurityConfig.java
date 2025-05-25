@@ -46,13 +46,15 @@ public class SecurityConfig {
                                 "/swagger-resources/**",
                                 "/webjars/**",
                                 "/api/auth/**"
+                                ,"/api/user/**"
+                                ,"/api/transactions/**"
 
                         ).permitAll()
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                        .requestMatchers(
-                        "/api/user/**",
-                                "/api/transactions/**"
-                        ).authenticated()
+//                        .requestMatchers(
+//                        "/api/user/**",
+//                                "/api/transactions/**"
+//                        ).authenticated()
                         .anyRequest().permitAll()
                 )
                 .csrf( csrf -> csrf.disable());
