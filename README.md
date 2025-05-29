@@ -10,7 +10,8 @@ All code is consolidated into this project as the core system to test some code 
 1. Setup Kafka or Redis  
 2. Setup Flyway  
 3. Check configuration files  
-4. Run the application
+4. don't for got docker compose up/down.
+5. Run the application
 
 ---
 
@@ -25,6 +26,7 @@ All code is consolidated into this project as the core system to test some code 
 - Batch schedule service.  
 - Workflow engine: this concept allows implementing many services just by configuration. It looks like a state machine but is custom created.  
 - Simple REST calls using **`Java Reactive`** concept to payment service.
+- **`Flyway DB Migation`**
 
 ---
 
