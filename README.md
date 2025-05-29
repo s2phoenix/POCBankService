@@ -32,6 +32,7 @@ All code is consolidated into this project as the core system to **test code des
 - **Batch schedule service** is in place.
 
 - **Workflow Engine**:  
+  ➤ Find WorkflowRegistry.java
   ➤ Designed to configure and implement multiple services with minimal code.  
   ➤ Works like a **state machine**, but fully custom-built.
 
