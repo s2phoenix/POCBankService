@@ -19,8 +19,8 @@ All code is consolidated into this project as the core system to test some code 
 - **Auth Service** and **User Service** are combined in this project.  
   Separation into microservices will be decided later.  
 - **Transfer Service** implements a simple concept.  
-- Generates models and TypeScript REST templates for Angular.  
-- Role-based authorization is implemented.  
+- **`OpenApi`** Generates models and TypeScript REST templates for Angular. just run mvn build.
+- **`Role-based authorization`** is implemented. @try   
 - **`JWT`** (JSON Web Token) is used for authentication.  
 - Batch schedule service.  
 - Workflow engine: this concept allows implementing many services just by configuration. It looks like a state machine but is custom created.  
