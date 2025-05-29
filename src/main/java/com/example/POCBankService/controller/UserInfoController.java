@@ -10,6 +10,7 @@ import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -43,7 +44,8 @@ public class UserInfoController {
     public ResponseEntity<List<UserInfo>> listPendingPersons() {
         return ResponseEntity.ok(userInfoService.getPendingPersons());
     }
-
+//  hidden concept this thing is role base api but just hide for test
+//    @PreAuthorize("hasAuthority('TELLER')")
     @PostMapping(value = "/preregister/approval", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> approveOrRejectUser(@RequestBody ApprovalRequest request) {
         return ResponseEntity.ok(userInfoService.updateUserApprovalStatus(request));

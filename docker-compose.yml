@@ -21,3 +21,11 @@ services:
                 container_name: POCBankService
                 ports:
                         - "6379:6379"
+        kafdrop:
+                image: obsidiandynamics/kafdrop
+                ports:
+                        - "9000:9000"
+                environment:
+                        KAFKA_BROKER_CONNECT: kafka:9092
+                depends_on:
+                        - kafka
