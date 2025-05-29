@@ -25,7 +25,7 @@ All code is consolidated into this project as the core system to **test code des
 - **`OpenAPI`**: Automatically generates models and **TypeScript REST templates** for Angular.  
   ➤ Just run `mvn build`
 
-- **`Role-based authorization`** is implemented using annotations (e.g., `@Try`)
+- **`Role-based authorization`** is implemented using annotations (e.g., `@PreAuthorize("hasAuthority('TELLER')")`)
 
 - **`JWT` (JSON Web Token)** is used for authentication.
 
