@@ -18,14 +18,13 @@ All code is consolidated into this project as the core system to test some code 
 
 - **Auth Service** and **User Service** are combined in this project.  
   Separation into microservices will be decided later.  
-- **Transfer Service** implements a simple concept.
+- **Transfer Service** implements a simple concept.  
 - Generates models and TypeScript REST templates for Angular.  
 - Role-based authorization is implemented.  
-- JWT (JSON Web Token) is used for authentication.
-- Batch schedule service
-- workflow engine this cocept we can implement many of service and just config it. it look like state but i create.
-- simple rest call by using JAVA Reactive concept to payment service.
-
+- **`JWT`** (JSON Web Token) is used for authentication.  
+- Batch schedule service.  
+- Workflow engine: this concept allows implementing many services just by configuration. It looks like a state machine but is custom created.  
+- Simple REST calls using **`Java Reactive`** concept to payment service.
 
 ---
 
