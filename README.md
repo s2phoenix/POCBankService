@@ -26,7 +26,7 @@ All code is consolidated into this project as the core system to test some code 
 - Batch schedule service.  
 - Workflow engine: this concept allows implementing many services just by configuration. It looks like a state machine but is custom created.  
 - Simple REST calls using **`Java Reactive`** concept to payment service.
-- **`Flyway DB Migation`**
+- **`Flyway`** for DB Migation
 
 ---
 
