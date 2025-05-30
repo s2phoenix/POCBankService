@@ -7,6 +7,8 @@ import com.example.POCBankService.model.request.ApprovalRequest;
 import com.example.POCBankService.model.request.CustomerRegisterRequestModel;
 import com.example.POCBankService.model.request.RegisterRequestModel;
 import com.example.POCBankService.repository.UserInfoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -18,6 +20,8 @@ import java.util.Random;
 public class UserInfoService {
 
     private final UserInfoRepository userInfoRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public UserInfoService(UserInfoRepository userInfoRepository) {
         this.userInfoRepository = userInfoRepository;
@@ -39,7 +43,7 @@ public class UserInfoService {
 
         UserInfo user = new UserInfo();
         user.setUserId(request.getCitizenId());
-        user.setPassword(request.getPassword());
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setThaiName(request.getNameTH());
         user.setEngName(request.getNameEN());
         user.setPin(request.getPin());

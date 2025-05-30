@@ -34,6 +34,7 @@ public class AuthController {
         );
 
         User user = (User) authentication.getPrincipal();
+
         String accessToken = jwtUtils.generateToken(user.getUsername(), user.getAuthorities().toString());
         String refreshToken = jwtUtils.generateRefreshToken(user.getUsername());
 

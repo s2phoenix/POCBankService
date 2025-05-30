@@ -9,6 +9,7 @@ import com.example.POCBankService.service.PaymentApiGatewayService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Component
@@ -30,15 +31,18 @@ public class ProcessTransactionBatchJob {
     }
 
     @Scheduled(cron = "${batch.schedule.cron}")
-    public Mono<Void> runBatch() {
+    public void runBatch() {
         System.out.println("Hello - Batch job running at " + java.time.LocalDateTime.now());
-        return holdingRepository.findByStatusAndRetrycountLessThan("PENDING", 3)
+        Flux.fromIterable(
+                        holdingRepository.findByStatusAndRetrycountLessThan("PENDING", 3)
+                )
                 .flatMap(this::mapToPaymentRequest)
                 .flatMap(paymentApi::submitPayment)
                 .onErrorContinue((error, obj) -> {
                     System.out.println("Error on transaction: " + error.getMessage());
                 })
-                .then();
+                .then()
+                .subscribe();
     }
 
     private Mono<PaymentRequest> mapToPaymentRequest(TransactionHolding holding) {

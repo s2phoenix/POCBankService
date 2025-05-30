@@ -1,2 +1,2 @@
 ALTER TABLE reborn.transaction_holding
-ADD COLUMN retrycount INT DEFAULT 0;
+ADD COLUMN retry_count INT DEFAULT 0;

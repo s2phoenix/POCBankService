@@ -34,4 +34,7 @@ public class TransactionHolding {
 
     @Column(nullable = false)
     private String status;
+
+    @Column(name = "retry_count")
+    private int retrycount;
 }

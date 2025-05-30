@@ -114,7 +114,7 @@
 					<user>root</user>
 					<password>2222</password>
 					<schemas>reborn</schemas>
-					<!-- Optional: specify schema if required -->
+					<cleanDisabled>false</cleanDisabled>
 				</configuration>
 			</plugin>
 			<plugin>
