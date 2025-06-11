@@ -7,7 +7,7 @@ All code is consolidated into this project as the core system to **test code des
 
 ## ⚙️ Instructions
 
-1. Setup **Kafka** or **Redis**  
+1. Setup **Kafka** or **Redis** via docker-compose
 2. Setup **Flyway**  
 3. Check configuration files  
 4. Don’t forget to run: `docker compose up` / `down`  
